@@ -2,34 +2,33 @@
 // Напиши функцию map(fn, array), которая принимает на вход функцию и массив, 
 // и обрабатывает каждый элемент массива этой функцией, возвращая новый массив.
 
-
 // Создала функцию для подбора случайных чисел для элементов массива
-
 function rnd(n) {
    return Math.floor(Math.random() * n);
-}
+};
 // Создала массив
 let digits = new Array(10);
 
 for (let i = 0; i < digits.length; i++) {
    digits[i] = rnd(100);
-}
-// Создала функцию для вывода на экран
-function printD(arr) {
-   document.write(digits.join(" - ") + "<hr/>");
-}
-
-printD(digits);
-
-// Задача - увеличить каждый элемент массива на 1 и вернуть новый массив
-function mult(arr) {
+};
+// Вывела на экран первоначальный массив
+document.write(digits.join(" - ") + "<hr/>");
+// Создала функцию, которая увеличивает каждый элемент массива на 1
+function mult(i) {
+   return ++i
+};
+//Функция map(fn, array)
+function map(fn, arr) {
+   let res = [];
    for (let i = 0; i < arr.length; i++) {
-      arr[i] = arr[i] + 1;
+      res[i] = fn(arr[i]);
    }
-}
+   return res;
+};
+// Вывела на экран новый массив
+document.write(map(mult, digits).join(" - ") + "<hr/>");
 
-mult(digits);
-printD(digits);
 
 // ЗАДАНИЕ №2
 // Перепишите функцию, используя оператор '?' или '||'
@@ -41,15 +40,9 @@ printD(digits);
 //    4	} else {
 //    5	return confirm('Родители разрешили?');
 //    6	} }
+
 let age = prompt("Сколько Вам лет?");
-function checkAge(age){
-   return (age > 18) ? true: confirm('Родители разрешили?')
-}
+(age >= 18)? document.write("Доступ разрешен"): confirm('Родители разрешили?');
 
 
-if (checkAge(age)){
-   document.write("Доступ разрешен")
-} else{
-   document.write("Доступ запрещен")
 
-}
